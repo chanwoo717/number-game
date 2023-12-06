@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width" , initial-scale="1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <script>
+            let num = 0;
+            let alarm = function () {
+                num++;
+                if (num % 3 === 0) {
+                    console.log("wakey wakey")
+                    // clearInterval(loop);
+                }
+            }
+            let loop = setInterval(alarm, 1000);
+        </script>
+        <div class="autoslide">
+            <figure>
+                <img src="images/최신뉴스1.png">
+                <img src="images/최신뉴스2.png">
+                <img src="images/최신뉴스3.png">
+            </figure>
+        </div>
+        <div class="btn-slide">
+            <button>정지</button>
+            <button>이전</button>
+            <button>다음</button>
+        </div>
+        <style>
+            .autoslide {
+                width: 400px;
+                overflow: hidden;
+            }
+
+            .autoslide>figure {
+                margin: 0;
+                display: flex;
+                transition: 0.5s;
+            }
+
+            .autoslide>figure>img {
+                width: 100%;
+                flex-shrink: 0;
+            }
+        </style>
+        <!-- <script>
+            // let slideInterval, slidePlay, count = 0;
+            const elSlide = document.querySelector('.autoslide figure'),
+                elSlideBtn = document.querySelectorAll('.btn-slide button');
+            slidePlay = function () {
+                // figure를 슬라이드시킴
+                count++;
+                if (count === 3) {
+                    count = 0;
+                }
+                elSlide.style = `transform:translateX(-${100 * count}%)`;
+            }
+            slideInterval = setInterval(slidePlay, 1000)
+
+            elSlideBtn.forEach(function (버튼, 키) {
+                버튼.onclick = function () {
+                    switch (키) {
+                        case 0: clearInterval(slideInterval); break;
+                        case 1: ; break;
+                        case 2: slidePlay(); break;
+                    }
+                    clearInterval(slideInterval)
+                }
+            })
+        </script> -->
+        <div class="plus">
+            <p>
+                <code>3+5=</code>
+                <input type="text">
+                <button>제출</button>
+            </p>
+        </div>
+        <script>
+
+            const elPlus = document.querySelector('.plus input'),
+                elPlusBtn = document.querySelector('.plus button'),
+                elPlusCode = document.querySelector('.plus code');
+
+            let randomAnswer;
+            let point = 0;
+
+            elPlusBtn.onclick = function () {
+                console.log(elPlus.value, randomAnswer);
+                if (elPlus.value === `${randomAnswer}`) {
+                    point++;
+                    console.log("정답입니다." + point + "점 입니다.");
+                }
+            }
+
+            function ranNumb() {
+                return Math.ceil(Math.random() * 50);
+            }
+
+            setInterval(function () {
+                let a = ranNumb();
+                let b = ranNumb();
+                randomAnswer = a + b;
+                elPlusCode.innerText = `${a} + ${b} = `;
+            }, 5000)
+
+        </script>
+    </body>
+
+</html>
